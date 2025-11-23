@@ -1,0 +1,730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="th"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;KADPER LOGISTIC - True-Landed Cost&lt;/title&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Google Fonts: Prompt for Modern Thai/Eng look --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS for Styling --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Font Awesome for Icons (Mascot and UI) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tailwind.config = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>theme: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>extend: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>colors: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>kadper: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>bg: '#FFF8E7',<span class="Apple-converted-space">      </span>/* Cream Vintage Background */</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>primary: '#E65100', /* Deep Orange */</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>dark: '#1A1A1A',<span class="Apple-converted-space">    </span>/* Soft Black */</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>accent: '#FB8C00',<span class="Apple-converted-space">  </span>/* Lighter Orange */</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>gray: '#5D5D5D'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>fontFamily: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>sans: ['Prompt', 'sans-serif'],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { background-color: #FFF8E7; color: #1A1A1A; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Vintage Grain Effect (Subtle texture for vintage feel) */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.vintage-grain {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed; /* Changed to fixed for better performance */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0; left: 0; width: 100%; height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: -1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mascot-float { animation: float 6s ease-in-out infinite; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes float {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { transform: translateY(0px); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>50% { transform: translateY(-10px); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { transform: translateY(0px); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Custom styles for the tracking line on mobile */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 767px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.tracking-line {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>width: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>left: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateX(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.ai-loading {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-top-color: #E65100;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-animation: spinner 0.8s linear infinite;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: spinner 0.8s linear infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@-webkit-keyframes spinner {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { -webkit-transform: rotate(0deg); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { -webkit-transform: rotate(360deg); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes spinner {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { transform: rotate(0deg); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { transform: rotate(360deg); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Fixed background effect --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="vintage-grain"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Navbar --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="w-full py-4 px-4 md:px-8 flex justify-between items-center max-w-7xl mx-auto sticky top-0 bg-kadper-bg/95 backdrop-blur-sm z-30 shadow-md md:shadow-none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="flex items-center gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Logo with Cat Icon (Mascot) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="w-10 h-10 bg-kadper-primary rounded-full flex items-center justify-center text-white font-bold text-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;i class="fa-solid fa-cat"&gt;&lt;/i&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="text-xl md:text-2xl font-extrabold tracking-tighter"&gt;KADPER &lt;span class="text-kadper-primary"&gt;LOGISTIC&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hidden md:flex gap-8 font-medium text-kadper-gray"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#about" class="hover:text-kadper-primary transition"&gt;เกี่ยวกับเรา&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#services" class="hover:text-kadper-primary transition"&gt;บริการ&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#calculator" class="hover:text-kadper-primary transition"&gt;คำนวณราคา&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#tracking" class="hover:text-kadper-primary transition"&gt;ติดตามสินค้า&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="#contact" class="bg-kadper-dark text-white px-4 py-2 md:px-6 md:py-2 rounded-full text-sm md:text-base hover:bg-kadper-primary transition duration-300 font-bold shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ติดต่อเรา</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Hero Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="max-w-7xl mx-auto px-6 py-12 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- UPDATED: New tagline focusing on ease and problem solving --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="inline-block bg-orange-100 text-kadper-primary px-4 py-1 rounded-full text-sm font-bold mb-4 border border-orange-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>รวดเร็ว | ง่าย | สบาย: ให้เรื่องปวดหัวให้เราจัดการ</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- UPDATED: New main title focusing on partnership and growth --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-kadper-primary"&gt;Logistic Partner&lt;/span&gt; &lt;br class="hidden md:block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>พร้อมเติบโตไปกับ SME</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- UPDATED: New main text focusing on seamless delivery and compliance --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-kadper-gray mb-6 leading-relaxed" id="hero-text-to-speak"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>สินค้าจากโรงงาน ถึง มือลูกค้า อย่างไร้รอยต่อ &lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ยืนยันราคาถึงหน้าประตู ด้วย **True-Landed Cost**</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="font-bold text-kadper-dark"&gt;ปลอดภัยที่สุดในการปฏิบัติตามกฎหมายภาษี&lt;/span&gt; ไม่ใช่แค่ราคาที่ถูกที่สุด</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex flex-col sm:flex-row gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#calculator" class="bg-kadper-primary text-white px-6 py-3 rounded-lg text-lg font-bold hover:bg-orange-700 transition shadow-xl transform hover:-translate-y-0.5 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>คำนวณค่าขนส่ง</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="tts-button" onclick="speakHeroText()" class="border-2 border-kadper-dark px-6 py-3 rounded-lg text-lg font-bold hover:bg-kadper-dark hover:text-white transition text-center flex items-center justify-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-volume-up"&gt;&lt;/i&gt; ✨ AI Logi-Tone</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Audio element to play TTS output --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;audio id="tts-audio" src=""&gt;&lt;/audio&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="relative flex justify-center order-first md:order-last"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Image Placeholder for Truck/Mascot/Logistics --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;img<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>src="https://placehold.co/600x400/E65100/FFF?text=AUDIT-PROOF%0ALOGISTICS"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>alt="ภาพรถบรรทุกขนส่งสินค้าและคอนเทนเนอร์"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>class="w-full max-w-lg rounded-xl shadow-2xl border-4 border-kadper-dark mascot-float"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- About Us Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="about" class="bg-white border-y-2 border-black py-16 px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:col-span-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-4xl font-extrabold text-kadper-dark mb-4 border-b-4 border-kadper-primary pb-2 inline-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>เกี่ยวกับเรา</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- UPDATED: Updated text to include partner focus and domestic services --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:col-span-2 text-gray-700 leading-relaxed space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>KADPER LOGISTIC ภายใต้ชื่อบริษัท G.a.d International Co., Ltd. คือ **Logistic Partner** สำหรับ</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>**Startup และ SME** ที่พร้อมจะเติบโตไปพร้อมกับคุณ เรามุ่งเน้นการขนส่งที่</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-bold text-kadper-dark"&gt;รวดเร็ว ง่าย สบาย&lt;/span&gt; และปลอดภัย.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>เรานำเสนอโซลูชันแบบครบวงจร: สินค้าจากโรงงาน ถึง มือลูกค้า อย่างไร้รอยต่อ และไม่ว่าคุณจะต้องการ</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-bold"&gt;บริการขนส่ง จัดเก็บ (คลังสินค้า) และ Last Mile ในประเทศ&lt;/span&gt; เราก็พร้อมจัดการให้เรื่องปวดหัวทั้งหมด</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>กลายเป็นเรื่องง่าย.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>พันธกิจหลักคือการนำเสนอ "True-Landed Cost" ที่แม่นยำที่สุด เพื่อขจัดความยุ่งยากของค่าใช้จ่ายแอบแฝง</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>และความเสี่ยงด้านภาษี ในฐานะ &lt;span class="font-bold text-kadper-dark"&gt;Logistic Partner&lt;/span&gt; เราช่วยให้ธุรกิจของคุณ</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>เติบโตได้อย่างมั่นคงและถูกกฎหมาย.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- AI Compliance Check Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="ai-check" class="py-20 px-6 bg-orange-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-[8px_8px_0px_0px_rgba(251,140,0,1)] border-2 border-kadper-accent overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-kadper-accent p-6 text-white text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold"&gt;&lt;i class="fa-solid fa-wand-magic-sparkles mr-2"&gt;&lt;/i&gt; ✨ AI Compliance Check&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="opacity-90"&gt;ลดความเสี่ยงภาษีและเอกสารที่ต้องใช้ก่อนขนส่ง&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="p-8 md:p-12 space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="product-description" class="block text-lg font-bold mb-2 text-kadper-dark"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>กรอกชื่อสินค้าหรือคำอธิบายสินค้า (เช่น: ครีมบำรุงผิวผสมวิตามินซี, ตุ๊กตาผ้า, เครื่องชาร์จมือถือ)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;textarea id="product-description" rows="3" placeholder="ตัวอย่าง: เครื่องสำอางค์ลดริ้วรอยสูตรสมุนไพรจีน" class="w-full border-2 border-gray-300 p-3 rounded focus:border-kadper-primary outline-none bg-gray-50"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="ai-check-button" onclick="checkCompliance()" class="w-full bg-kadper-primary text-white font-bold py-4 rounded hover:bg-orange-700 transition shadow-lg flex items-center justify-center gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-shield-halved"&gt;&lt;/i&gt; ตรวจสอบความเสี่ยงทันที</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="ai-check-loading" class="hidden text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="inline-block w-8 h-8 border-4 border-gray-200 rounded-full ai-loading"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-kadper-primary mt-2 font-medium"&gt;AI กำลังวิเคราะห์ข้อมูลความเสี่ยง...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Result Area --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="ai-check-result" class="hidden bg-gray-50 p-6 rounded-lg border-2 border-dashed border-kadper-primary"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="font-bold text-kadper-dark mb-3"&gt;ผลการวิเคราะห์เบื้องต้น (Gemini AI):&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="result-content" class="text-gray-700 whitespace-pre-wrap"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Calculator Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="calculator" class="py-20 px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-[8px_8px_0px_0px_rgba(230,81,0,1)] border-2 border-kadper-primary overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-kadper-primary p-6 text-white text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold"&gt;เครื่องคำนวณ True-Landed Cost&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="opacity-90"&gt;คำนวณปริมาตรและค่าใช้จ่ายในการขนส่งเบื้องต้น&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="p-8 md:p-12 grid md:grid-cols-2 gap-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Input Form --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="length" class="block text-sm font-bold mb-2"&gt;ขนาด (กว้าง x ยาว x สูง เป็นเซนติเมตร)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="length" placeholder="ยาว (ซม.)" value="100" class="w-full border-2 border-gray-300 p-3 rounded focus:border-kadper-primary outline-none bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="width" placeholder="กว้าง (ซม.)" value="100" class="w-full border-2 border-gray-300 p-3 rounded focus:border-kadper-primary outline-none bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="height" placeholder="สูง (ซม.)" value="100" class="w-full border-2 border-gray-300 p-3 rounded focus:border-kadper-primary outline-none bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="calculateCost()" class="w-full bg-kadper-dark text-white font-bold py-4 rounded hover:bg-gray-800 transition shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>คำนวณค่าขนส่ง</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-xs text-gray-400"&gt;*ราคาประมาณการ, 100 x 100 x 100 ซม. = 1 CBM&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Result Display --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col justify-center space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-orange-50 border border-orange-200 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-white p-3 rounded-full shadow"&gt;&lt;i class="fa-solid fa-truck-fast text-kadper-primary text-xl"&gt;&lt;/i&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-sm text-gray-500 font-bold"&gt;รถบรรทุก (5-7 วัน)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h3 class="text-2xl font-bold text-kadper-dark" id="truck-price"&gt;5,500 THB&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-xs text-gray-400"&gt;อัตรา: 5,500 บาท / CBM&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-blue-50 border border-blue-200 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-white p-3 rounded-full shadow"&gt;&lt;i class="fa-solid fa-ship text-blue-600 text-xl"&gt;&lt;/i&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-sm text-gray-500 font-bold"&gt;ทางทะเล (15-20 วัน)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h3 class="text-2xl font-bold text-kadper-dark" id="sea-price"&gt;4,000 THB&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-xs text-gray-400"&gt;อัตรา: 4,000 บาท / CBM&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-center mt-2 pt-2 border-t border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="font-bold text-lg text-kadper-dark"&gt;ปริมาตรรวม: &lt;span id="total-cbm" class="text-kadper-primary"&gt;1.0000&lt;/span&gt; CBM&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Services Grid --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="services" class="max-w-7xl mx-auto px-6 py-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold mb-4"&gt;บริการของเรา&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-kadper-gray text-lg"&gt;โซลูชันครบวงจรจากจีนถึงไทย&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Service 1: Shipping --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-kadper-primary hover:shadow-lg transition group shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-kadper-primary mb-4 group-hover:bg-kadper-primary group-hover:text-white transition"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-route text-xl"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="font-bold text-lg mb-2"&gt;ขนส่งจีน-ไทย&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500"&gt;ทั้งทางบก (รถบรรทุก) และทางทะเล พร้อมเคลียร์ภาษีอย่างถูกต้อง&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Service 2: Warehouse --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-kadper-primary hover:shadow-lg transition group shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-kadper-primary mb-4 group-hover:bg-kadper-primary group-hover:text-white transition"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-warehouse text-xl"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="font-bold text-lg mb-2"&gt;พื้นที่คลังสินค้า&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500"&gt;บริการคลังสินค้าเพื่อรองรับการจัดเก็บและกระจายสินค้า&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Service 3: Fulfillment Pick Pack --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-kadper-primary hover:shadow-lg transition group shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-kadper-primary mb-4 group-hover:bg-kadper-primary group-hover:text-white transition"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-boxes-packing text-xl"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="font-bold text-lg mb-2"&gt;Fulfillment (Pick &amp; Pack)&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500"&gt;แพ็คและจัดส่งสินค้าถึงมือลูกค้าคนไทยโดยตรง&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Service 4: International/Certificate --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-kadper-primary hover:shadow-lg transition group shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-kadper-primary mb-4 group-hover:bg-kadper-primary group-hover:text-white transition"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-file-certificate text-xl"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="font-bold text-lg mb-2"&gt;บริการเอกสารและส่งออก&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500"&gt;จัดการเอกสารส่งออก และขอใบรับรองสินค้าในไทย&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Integration Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="store-integration" class="bg-kadper-primary py-12 px-6 text-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold mb-8"&gt;Store-to-Door Integration&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-xl mb-10 font-medium"&gt;ไม่เป็นแค่รถบรรทุก แต่เป็น Plug-in ที่เชื่อมต่อกับร้านค้าออนไลน์ของคุณ!&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex flex-wrap justify-center gap-6 md:gap-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Shopee Icon --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col items-center p-4 bg-white/10 rounded-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-bag-shopping text-5xl text-white mb-2"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-bold text-sm"&gt;Shopee&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Lazada Icon --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col items-center p-4 bg-white/10 rounded-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-regular fa-heart text-5xl text-white mb-2"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-bold text-sm"&gt;Lazada&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- TikTok Shop Icon --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col items-center p-4 bg-white/10 rounded-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-brands fa-tiktok text-5xl text-white mb-2"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-bold text-sm"&gt;TikTok Shop&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- API Icon --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col items-center p-4 bg-white/10 rounded-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-code text-5xl text-white mb-2"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-bold text-sm"&gt;API Sync&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="mt-8 text-sm opacity-80"&gt;ระบบจะอัปเดตระดับสต็อกโดยอัตโนมัติ เมื่อสินค้าถึงคลังสินค้าในไทย&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Live Tracking (Domino's Style) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="tracking" class="bg-kadper-dark text-white py-20 px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-5xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold mb-2 text-kadper-primary"&gt;Proactive Live-Tracking&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400"&gt;แจ้งสถานะสินค้าแบบ Real-time ก่อนที่คุณจะโทรมาถาม&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Tracker UI --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 relative overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col md:flex-row justify-between items-center relative z-10 gap-8 md:gap-0"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Progress Bar Line (Mobile Vertical) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="tracking-line bg-gray-700 md:hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="bg-kadper-primary w-full h-1/2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Step 1: China Warehouse --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-center w-full md:w-1/4 opacity-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-12 h-12 bg-gray-600 rounded-full mx-auto mb-3 flex items-center justify-center"&gt;&lt;i class="fa-solid fa-box text-lg"&gt;&lt;/i&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-sm"&gt;คลังจีน&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-400"&gt;รับสินค้าแล้ว&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Step 2: Border Crossing (Active) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-center w-full md:w-1/4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-14 h-14 bg-kadper-primary rounded-full mx-auto mb-3 flex items-center justify-center shadow-[0_0_20px_rgba(230,81,0,0.6)] animate-pulse"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fa-solid fa-truck-moving text-xl"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-kadper-primary"&gt;กำลังข้ามแดน&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-300"&gt;รอการเคลียร์ศุลกากร...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="bg-yellow-600 text-yellow-100 text-[10px] px-2 py-1 rounded mt-2 inline-block font-medium"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fa-solid fa-triangle-exclamation mr-1"&gt;&lt;/i&gt; แจ้งดีเลย์: ฝนตกหนัก 2 ชม.</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Step 3: Thai Warehouse --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-center w-full md:w-1/4 opacity-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-12 h-12 bg-gray-600 rounded-full mx-auto mb-3 flex items-center justify-center"&gt;&lt;i class="fa-solid fa-warehouse text-lg"&gt;&lt;/i&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-sm"&gt;คลังไทย&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-400"&gt;รอการจัดส่ง&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Step 4: Last Mile --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-center w-full md:w-1/4 opacity-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-12 h-12 bg-gray-600 rounded-full mx-auto mb-3 flex items-center justify-center"&gt;&lt;i class="fa-solid fa-house-chimney text-lg"&gt;&lt;/i&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-sm"&gt;ถึงหน้าประตู&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-400"&gt;กำลังนำส่ง&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Progress Bar Line (Desktop Horizontal) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -z-0 transform -translate-y-1/2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="h-full bg-kadper-primary w-1/2"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Testimonials --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="py-20 px-6 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-3xl font-bold mb-12"&gt;เสียงตอบรับจากลูกค้า&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-8 rounded-xl shadow-md border border-gray-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-kadper-primary text-2xl mb-4"&gt;★★★★★&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="italic text-gray-600 mb-6"&gt;"มั่นใจใน True-Landed Cost ไม่มีค่าจุกจิกตามมาให้ปวดหัว ทำบัญชีง่ายขึ้นมาก"&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h4 class="font-bold"&gt;- คุณบี, ผู้จำหน่ายสินค้า Gadget&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-t-kadper-primary transform md:-translate-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-kadper-primary text-2xl mb-4"&gt;★★★★★&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="italic text-gray-600 mb-6"&gt;"ระบบ API เชื่อมต่อกับ TikTok Shop ได้จริง สต็อกอัปเดตอัตโนมัติทันทีที่ถึงคลังไทย"&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h4 class="font-bold"&gt;- คุณกัส, เจ้าของแบรนด์แฟชั่น&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-8 rounded-xl shadow-md border border-gray-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-kadper-primary text-2xl mb-4"&gt;★★★★★&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="italic text-gray-600 mb-6"&gt;"ความเร็วในการขนส่งดีกว่าที่เคยใช้มา ตัวติดตามแจ้งละเอียดสุดๆ ทำให้จัดการคิวลูกค้าได้ดี"&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h4 class="font-bold"&gt;- คุณแบงค์, ธุรกิจนำเข้า&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Footer &amp; Contact --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer id="contact" class="bg-black text-white pt-16 pb-8 border-t-8 border-kadper-primary"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Company Info --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center gap-2 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-cat text-2xl text-kadper-primary"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-2xl font-bold tracking-tighter"&gt;KADPER LOGISTIC&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400 leading-relaxed max-w-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>โลจิสติกส์สำหรับสตาร์ทอัพ เชื่อมต่อจีน-ไทย ด้วยความเร็ว ความโปร่งใส และนวัตกรรม</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Contact Details (UPDATED) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold mb-4 text-kadper-primary"&gt;ติดต่อเรา (Contact Us)&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="font-bold text-lg"&gt;G.a.d International Co., Ltd.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- New Address --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400 mt-2"&gt;976/9 พระราม 9 แขวงบางกะปิ เขตห้วยขวาง กรุงเทพฯ&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- New Phone Number --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mt-4 font-bold text-xl"&gt;&lt;i class="fa-solid fa-phone mr-2 text-kadper-accent"&gt;&lt;/i&gt; 094-908-3999&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400 mt-1"&gt;&lt;i class="fa-solid fa-envelope mr-2 text-kadper-accent"&gt;&lt;/i&gt; contact@kadperlogistic.com&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Social Media --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:col-span-2 lg:col-span-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold mb-4 text-kadper-primary"&gt;เชื่อมต่อกับเรา&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-kadper-primary transition shadow-md"&gt;&lt;i class="fa-brands fa-facebook-f"&gt;&lt;/i&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-kadper-primary transition shadow-md"&gt;&lt;i class="fa-brands fa-line"&gt;&lt;/i&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-kadper-primary transition shadow-md"&gt;&lt;i class="fa-solid fa-at"&gt;&lt;/i&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="text-center border-t border-gray-800 pt-8 text-sm text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&amp;copy; 2024 KADPER LOGISTIC. All rights reserved.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Javascript Functionality --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Define API Key and URL for Gemini calls</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const apiKey = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ttsApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Utility function for exponential backoff</p>
+<p class="p1"><span class="Apple-converted-space">        </span>async function fetchWithBackoff(url, options, maxRetries = 5) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; maxRetries; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const response = await fetch(url, options);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (response.ok) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return response;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else if (response.status === 429 || response.status &gt;= 500) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Rate limit or server error: retry</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>await new Promise(resolve =&gt; setTimeout(resolve, delay));</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>continue;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Other error: break and throw</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>throw new Error(`API returned status ${response.status}: ${await response.text()}`);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (i === maxRetries - 1) throw error;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>await new Promise(resolve =&gt; setTimeout(resolve, delay));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Core Application Logic ---</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Start calculation with default values on load</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.onload = function() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>calculateCost();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function calculateCost() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Get values. Default to 0 if input is empty or invalid.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const l = parseFloat(document.getElementById('length').value) || 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const w = parseFloat(document.getElementById('width').value) || 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const h = parseFloat(document.getElementById('height').value) || 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Calculate CBM (Cubic Meter)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Formula: (L * W * H) / 1,000,000 for cm to m3</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const cbm = (l * w * h) / 1000000;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Define Rates</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const truckRate = 5500; // 5500 THB by truck</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const seaRate = 4000; <span class="Apple-converted-space">  </span>// 4000 THB by sea</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Calculate Total Prices</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const truckTotal = cbm * truckRate;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const seaTotal = cbm * seaRate;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Function to format number with commas and set text</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const formatPrice = (elementId, price) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const formattedPrice = price.toLocaleString('th-TH', { minimumFractionDigits: 0, maximumFractionDigits: 0 });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById(elementId).innerText = formattedPrice + " THB";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Update UI</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('total-cbm').innerText = cbm.toFixed(4); // Show CBM up to 4 decimal places</p>
+<p class="p1"><span class="Apple-converted-space">            </span>formatPrice('truck-price', truckTotal);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>formatPrice('sea-price', seaTotal);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- GEMINI API INTEGRATION 1: AI COMPLIANCE CHECK ---</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>async function checkCompliance() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const description = document.getElementById('product-description').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resultDiv = document.getElementById('ai-check-result');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resultContent = document.getElementById('result-content');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const loadingDiv = document.getElementById('ai-check-loading');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const checkButton = document.getElementById('ai-check-button');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!description) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>resultContent.innerText = "กรุณากรอกชื่อสินค้าหรือคำอธิบายเพื่อทำการวิเคราะห์.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>resultDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Show loading state</p>
+<p class="p1"><span class="Apple-converted-space">            </span>loadingDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>resultDiv.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>checkButton.disabled = true;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const systemPrompt = "คุณคือผู้ช่วยโลจิสติกส์ที่มีความเชี่ยวชาญด้านกฎหมายไทย วิเคราะห์ชื่อสินค้าหรือคำอธิบายที่ผู้ใช้ป้อน และประเมินความเสี่ยงด้านกฎหมายและภาษีของไทย สรุปผลเป็นภาษาไทย 3 หัวข้อหลัก: 1) ความเสี่ยงด้านกฎหมาย (เช่น ต้องมี อย. มอก.) 2) อัตราภาษีนำเข้าโดยประมาณ (แจ้งช่วง) 3) ข้อแนะนำเบื้องต้นในการเตรียมเอกสาร ให้ผลลัพธ์เป็นข้อความที่อ่านง่าย";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const userQuery = `วิเคราะห์ความเสี่ยงและข้อแนะนำสำหรับสินค้า: ${description}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const payload = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>contents: [{ parts: [{ text: userQuery }] }],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tools: [{ "google_search": {} }], // Use Google Search for compliance grounding</p>
+<p class="p1"><span class="Apple-converted-space">                </span>systemInstruction: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>parts: [{ text: systemPrompt }]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>config: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>temperature: 0.4</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetchWithBackoff(apiUrl, {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>method: 'POST',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const result = await response.json();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "เกิดข้อผิดพลาดในการวิเคราะห์ข้อมูล กรุณาลองใหม่อีกครั้ง";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>resultContent.innerText = text;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>resultDiv.classList.remove('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Gemini API Error:", error);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>resultContent.innerText = "เกิดข้อผิดพลาดในการเชื่อมต่อ AI: ไม่สามารถเข้าถึงข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่อของคุณ.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>resultDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Hide loading and re-enable button</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loadingDiv.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>checkButton.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- GEMINI API INTEGRATION 2: AI LOGI-TONE (TEXT-TO-SPEECH) ---</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Base64 to ArrayBuffer helper for audio processing</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const base64ToArrayBuffer = (base64) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const binaryString = atob(base64);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const len = binaryString.length;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const bytes = new Uint8Array(len);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; len; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>bytes[i] = binaryString.charCodeAt(i);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return bytes.buffer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// PCM to WAV converter function (Required for the API's raw PCM output)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pcmToWav = (pcm16, sampleRate) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const numChannels = 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const bitDepth = 16;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const bytesPerSample = bitDepth / 8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const blockAlign = numChannels * bytesPerSample;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const byteRate = sampleRate * blockAlign;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dataSize = pcm16.length * bytesPerSample;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const buffer = new ArrayBuffer(44 + dataSize);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const view = new DataView(buffer);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let offset = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Write RIFF header</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, 0x52494646, false); offset += 4; // "RIFF"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, 36 + dataSize, true); offset += 4; // file size</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, 0x57415645, false); offset += 4; // "WAVE"</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Write FMT chunk</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, 0x666d7420, false); offset += 4; // "fmt "</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, 16, true); offset += 4; // chunk size</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint16(offset, 1, true); offset += 2; // format code (PCM)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint16(offset, numChannels, true); offset += 2; // number of channels</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, sampleRate, true); offset += 4; // sample rate</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, byteRate, true); offset += 4; // byte rate</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint16(offset, blockAlign, true); offset += 2; // block align</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint16(offset, bitDepth, true); offset += 2; // bit depth</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Write DATA chunk</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, 0x64617461, false); offset += 4; // "data"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>view.setUint32(offset, dataSize, true); offset += 4; // chunk size</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Write PCM data</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; pcm16.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>view.setInt16(offset, pcm16[i], true);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>offset += 2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return new Blob([view], { type: 'audio/wav' });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>async function speakHeroText() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const textToSpeak = document.getElementById('hero-text-to-speak').innerText;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const audioPlayer = document.getElementById('tts-audio');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const speakButton = document.getElementById('tts-button');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const originalButtonContent = speakButton.innerHTML;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 1. Set Loading State</p>
+<p class="p1"><span class="Apple-converted-space">            </span>speakButton.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>speakButton.innerHTML = '&lt;div class="inline-block w-4 h-4 border-2 border-white rounded-full ai-loading mr-2"&gt;&lt;/div&gt; กำลังสร้างเสียง...';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 2. TTS API Payload</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const payload = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>contents: [{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>parts: [{ text: `Say in an informative and reliable tone: ${textToSpeak}` }]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>generationConfig: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>responseModalities: ["AUDIO"],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>speechConfig: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>voiceConfig: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>prebuiltVoiceConfig: { voiceName: "Charon" } // Charon: Informative voice</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>model: "gemini-2.5-flash-preview-tts"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// 3. API Call</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetchWithBackoff(ttsApiUrl, {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>method: 'POST',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const result = await response.json();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const part = result?.candidates?.[0]?.content?.parts?.[0];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const audioData = part?.inlineData?.data;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const mimeType = part?.inlineData?.mimeType;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (audioData &amp;&amp; mimeType &amp;&amp; mimeType.startsWith("audio/L16")) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// 4. Process PCM Audio</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const sampleRateMatch = mimeType.match(/rate=(\d+)/);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 16000;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const pcmData = base64ToArrayBuffer(audioData);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const pcm16 = new Int16Array(pcmData);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// 5. Convert to WAV Blob and create URL</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const wavBlob = pcmToWav(pcm16, sampleRate);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const audioUrl = URL.createObjectURL(wavBlob);</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// 6. Play Audio</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>audioPlayer.src = audioUrl;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>audioPlayer.play();</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>audioPlayer.onended = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Clean up URL after playing</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>URL.revokeObjectURL(audioUrl);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error("TTS API Error: Audio data not found or format incorrect.");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>alert("ไม่สามารถสร้างเสียงได้: เกิดข้อผิดพลาดในการประมวลผลข้อมูลเสียง");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("TTS API Error:", error);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("เกิดข้อผิดพลาดในการเชื่อมต่อ AI Logi-Tone");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// 7. Reset Button State</p>
+<p class="p1"><span class="Apple-converted-space">                </span>speakButton.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>speakButton.innerHTML = originalButtonContent;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
